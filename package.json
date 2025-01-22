@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "Website for a local movie theater",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
     "build-css": "sass src/styles/main.scss dist/styles.css",
-    "watch-css": "sass --watch src/styles/main.scss:dist/styles.css"
+    "watch-css": "sass --watch src/styles/main.scss:dist/styles.css",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -27,5 +29,8 @@
     "*.{js,jsx,ts,tsx,json,css,scss,md,html}": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }
