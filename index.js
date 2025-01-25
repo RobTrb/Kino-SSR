@@ -11,7 +11,7 @@ app.get('/', async (request, response) => {
 })
 
 app.get('/movie', async (request, response) => {
-  const templateBuf = await fs.readFile('./templates/moviePageTemplate.html')
+  const templateBuf = await fs.readFile('./Static/templates/moviePageTemplate.html')
   const templateText = templateBuf.toString()
 
   const movieID = request.query.movieId
@@ -26,7 +26,7 @@ app.get('/movie', async (request, response) => {
   response.send(outputHTML)
 })
 
-app.use('/', express.static('./'))
+app.use('/Static', express.static('./Static'))
 
 //app.use('/dist', express.static('./dist'));
 //app.use('/Script', express.static('./Script'));
