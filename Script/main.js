@@ -5,12 +5,12 @@ addFrontPageContent()
 
 async function loadFrontPageContent() {
   try {
-    const contentResponse = await fetch('FrontPage-content.json')
+    const contentResponse = await fetch('/FrontPage-content.json')
     if (!contentResponse.ok) throw new Error('Failed to load content')
     const frontPageContent = await contentResponse.json()
     console.log(frontPageContent)
 
-    const imagesResponse = await fetch('FrontPage-images.json')
+    const imagesResponse = await fetch('/FrontPage-images.json')
     if (!imagesResponse.ok) throw new Error('Failed to load images')
     const frontPageImages = await imagesResponse.json()
     console.log(frontPageImages)
@@ -45,23 +45,6 @@ async function addFrontPageContent() {
     navItems[i].innerHTML = frontPageContent.header.menu[i]
   }
 
-  //MAIN
-  document.querySelector('.search__label').innerHTML = frontPageContent.main.searchLabel
-  document.querySelector('.search__input').setAttribute('placeholder', frontPageContent.main.searchInput)
-  document.querySelector('.search__clear').innerHTML = frontPageContent.main.searchClear
-  document.querySelector('.mobile__filter-menu').innerHTML = frontPageContent.main.mobileFilterMenu
-  document.querySelector('.filter-btn--today').innerHTML = frontPageContent.main.btnToday
-  document.querySelector('.filter-btn--tomorrow').innerHTML = frontPageContent.main.btnTomorrow
-  document.querySelector('.filter-btn--other').innerHTML = frontPageContent.main.btnOther
-  document.querySelector('.filter-genre__dropdown-all').innerHTML = frontPageContent.main.dropdownGenreAll
-  document.querySelector('.filter-genre__dropdown-horror').innerHTML = frontPageContent.main.dropdownGenreHorror
-  document.querySelector('.filter-genre__dropdown-comedy').innerHTML = frontPageContent.main.dropdownGenreComedy
-  document.querySelector('.filter-genre__dropdown-action').innerHTML = frontPageContent.main.dropdownGenreAction
-  document.querySelector('.filter-genre__dropdown-romance').innerHTML = frontPageContent.main.dropdownGenreRomance
-  document.querySelector('.filter-genre__dropdown-kids').innerHTML = frontPageContent.main.dropdownGenreKids
-  document.querySelector('.filter-btn__show-less').innerHTML = frontPageContent.main.btnShowLess
-  document.querySelector('.filter-btn__show-all').innerHTML = frontPageContent.main.btnShowAll
-
   //FOOTER
   document.querySelector('.footer__social-title').innerHTML = frontPageContent.footer.socialTitle
   document.querySelector('.footer__contact-title').innerHTML = frontPageContent.footer.contactTitle
@@ -75,26 +58,3 @@ async function addFrontPageContent() {
   document.querySelector('.footer__find-Us-country').innerHTML = frontPageContent.footer.findUsCountry
   document.querySelector('.footer__partners-title').innerHTML = frontPageContent.footer.partnersTitle
 }
-// Eventlistener for search input
-document.addEventListener('DOMContentLoaded', () => {
-  initMovies()
-  const searchInput = document.querySelector('.search__input')
-  const debouncedSearch = debounce((query) => {
-    if (query.length >= 3) {
-      executeSearch(query)
-    } else if (query.length === 0) {
-      createMovies()
-    } else {
-      console.log('För kort sökfras')
-    }
-  }, 300) // 300ms delay
-
-  // Clear search field button
-  const clearButton = document.querySelector('.search__clear')
-
-  clearButton.addEventListener('click', function () {
-    searchInput.value = ''
-    searchInput.focus()
-    createMovies()
-  })
-})

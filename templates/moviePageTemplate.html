@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Kino Kvikkjokk</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="dist/styles.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/dist/styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
   </head>
   <body>
@@ -15,29 +15,25 @@
       </div>
       <nav class="header__nav">
         <ul class="header__nav-list">
-          <li class="header__nav-item" id="header__menu" href="/index.html"></li>
+          <li class="header__nav-item" id="header__menu"></li>
           <li class="header__nav-item" id="header__children-movies"></li>
           <li class="header__nav-item" id="header__events"></li>
-          <a href="/templates/moviePageTemplate.html"><li class="header__nav-item" id="header__about-us"></li></a>
+          <li class="header__nav-item" id="header__about-us" href="template/moviePageTemplate.html"></li>
           <li class="header__nav-item" id="header__login"></li>
         </ul>
       </nav>
     </header>
-    <main class="main">
-      <div class="movie__wrapper"></div>
 
-      <div class="movie-modal__container">
-        <!--This is a section of placeholders for dynamic content-->
-        <div class="movie-modal__content">
-          <span class="movie-modal__close">X</span>
-          <div class="movie-details">
-            <img class="movie-details__image" />
-            <h2 class="movie-details__title"></h2>
-            <p class="movie-details__id"></p>
-            <p class="movie-details__runtime"></p>
-            <p class="movie-details__description"></p>
-            <p class="movie-details__genres"></p>
-          </div>
+    <main class="main">
+      <div class="main__singleMovieWrapper">
+        <div class="main__poster">
+          <img src="-#poster#-" class="moviePoster" />
+        </div>
+        <div class="main__movieInfo">
+          <h1 class="title">-#title#-</h1>
+          <p class="description">-#description#-</p>
+          <a href="-#imdb#-" target="_blank"><img src="/assets/images/icons/imdb.png" class="imdbLogo" /></a>
+          <a class="backBTN" href="/index.html">Back</a>
         </div>
       </div>
     </main>
@@ -46,16 +42,16 @@
       <div class="footer__social">
         <h3 class="footer__social-title"></h3>
         <a class="footer__social-twitter" href="https://x.com/">
-          <img src="assets/images/icons/icons-twitter-white-512.png" alt="New Twitter Icon" />
+          <img src="/assets/images/icons/icons-twitter-white-512.png" alt="New Twitter Icon" />
         </a>
         <a class="footer__social-instagram" href="https://www.instagram.com/">
-          <img src="assets/images/icons/icons-instagram-white-512.png" alt="Instagram Icon" />
+          <img src="/assets/images/icons/icons-instagram-white-512.png" alt="Instagram Icon" />
         </a>
         <a class="footer__social-youtube" href="https://www.youtube.com/">
-          <img src="assets/images/icons/icons-youtube-white-512.png" alt="Youtube Icon" />
+          <img src="/assets/images/icons/icons-youtube-white-512.png" alt="Youtube Icon" />
         </a>
         <a class="footer__social-linkedin" href="https://www.linkedin.com/">
-          <img src="assets/images/icons/icons-linkedin-white-512.png" alt="LinkedIn Icon" />
+          <img src="/assets/images/icons/icons-linkedin-white-512.png" alt="LinkedIn Icon" />
         </a>
       </div>
       <div class="footer__contact">
@@ -76,11 +72,8 @@
       </div>
     </footer>
 
-    <script src="Script/main.js"></script>
-    <script src="Script/fetch.js"></script>
-    <script src="Script/UI-movies.js"></script>
-    <script src="Script/ReplaceBackgroundKidsCinema.js"></script>
-
-    <script src="Script/moviePage.js"></script>
+    <script src="/Script/main.js"></script>
+    <script src="/Script/ReplaceBackgroundKidsCinema.js"></script>
+    <script src="/Script/moviePage.js"></script>
   </body>
 </html>

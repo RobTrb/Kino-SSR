@@ -581,6 +581,50 @@ main {
   padding: 0px 20px 0px 20px;
 }
 
+.main__singleMovieWrapper {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.main__poster {
+  width: 50%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.main__poster img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.main__movieInfo {
+  background-color: #012840;
+  display: flex;
+  border-radius: 10px;
+  color: #ffffff;
+  width: 50%;
+  flex-direction: column;
+  margin-left: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backBTN {
+  background-color: #03658c;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.imdbLogo {
+  width: 20%;
+}
+
 footer {
   color: #ffffff;
   background-color: #012840;

@@ -51,8 +51,9 @@ async function createMovies() {
 
       //Listener when clicking on a movie
       movieDOM.addEventListener('click', () => {
-        console.log('Clicked movie:', movieData.title)
-        showModal(movieData)
+        console.log('Clicked movie:', movieData.attributes.title, movieData.id)
+        window.location.href = `movie?movieId=${movieData.id}`
+        //window.location.href = `templates/moviePageTemplate.html?movieId=${movieData.id}`;
       })
     }
   } catch (error) {
@@ -64,33 +65,4 @@ async function createMovies() {
     errorMessage.innerHTML = frontPageContent.error.loadMovies
     movieContainer.appendChild(errorMessage)
   }
-}
-
-// Function to show modal
-function showModal(movieData) {
-  const modalContainer = document.querySelector('.movie-modal__container')
-
-  if (!modalContainer) {
-    console.error('Modal container not found!')
-    return
-  }
-
-  //modal content
-  const modalContent = `
-    <div>
-      <button class="movie-modal__close">×</button>
-      <h2>${movieData.title}</h2>
-      <img src="${movieData.imagePoster}" alt="${movieData.title}" class="movie-modal__poster">
-      <p><strong>Age Limit:</strong> ${movieData.ageLimit}</p>
-      <p><strong>Genres:</strong> ${movieData.genres.join(' / ')}</p>
-      <p><strong>Description:</strong> ${movieData.description || 'No description available.'}</p>
-    </div>
-  `
-  modalContainer.innerHTML = modalContent
-  modalContainer.classList.add('active')
-
-  // Closing modal function
-  document.querySelector('.movie-modal__close').addEventListener('click', () => {
-    modalContainer.classList.remove('active')
-  })
 }
