@@ -1,7 +1,12 @@
 import express from 'express'
 import fs from 'fs/promises'
+import { engine } from 'express-handlebars'
 
 const app = express()
+
+app.engine('handlebars', engine())
+app.set('view engine', 'handlebars')
+app.set('views', './Static/templates')
 
 //test get function with a query paramaters in url
 app.get('/', async (request, response) => {
@@ -11,12 +16,21 @@ app.get('/', async (request, response) => {
 })
 
 app.get('/movie', async (request, response) => {
-  const templateBuf = await fs.readFile('./Static/templates/moviePageTemplate.html')
-  const templateText = templateBuf.toString()
+  //const templateBuf = await fs.readFile('./Static/templates/moviePageTemplate.html')
+  //const templateText = templateBuf.toString()
 
   const movieID = request.query.movieId
-
   const movieData = await fetchMovie(movieID)
+
+  response.render('moviePageTemplate', {
+    layout: false,
+    title: movieData.attributes.title,
+    description: movieData.attributes.intro,
+    poster: movieData.attributes.image.url,
+    imdb: `https://www.imdb.com/title/${movieData.attributes.imdbId}`,
+  })
+
+  /*
   const outputHTML = templateText
     .replace('-#title#-', movieData.attributes.title)
     .replace('-#description#-', movieData.attributes.intro)
@@ -24,6 +38,7 @@ app.get('/movie', async (request, response) => {
     .replace('-#imdb#-', `https://www.imdb.com/title/${movieData.attributes.imdbId}`)
   console.log(movieData)
   response.send(outputHTML)
+  */
 })
 
 app.use('/Static', express.static('./Static'))
