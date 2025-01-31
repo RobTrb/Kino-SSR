@@ -46,10 +46,12 @@ app.use('/Static', express.static('./Static'))
 //app.use('/dist', express.static('./dist'));
 //app.use('/Script', express.static('./Script'));
 
-app.listen(5080)
-console.log('Server started and listening on port 5080')
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(5080)
+  console.log('Server started and listening on port 5080')
+}
 
-async function fetchMovie(id) {
+export async function fetchMovie(id) {
   const url = 'https://plankton-app-xhkom.ondigitalocean.app/api/movies/'
   const urlWithParam = url + id
   try {
@@ -59,7 +61,6 @@ async function fetchMovie(id) {
     }
 
     const movieData = await response.json()
-    console.log(movieData)
     return movieData.data
   } catch (error) {
     console.error(`Error fetching moviedata: ${error.message}`)
