@@ -66,3 +66,5 @@ export async function fetchMovie(id) {
     console.error(`Error fetching moviedata: ${error.message}`)
   }
 }
+
+export default app

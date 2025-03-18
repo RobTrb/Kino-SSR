@@ -1,4 +1,6 @@
-import { fetchMovie } from './index'
+import request from 'supertest'
+import { jest } from '@jest/globals'
+import app, { fetchMovie } from './index.js'
 
 describe('Checks if fetchMovie function fecthes correct title', () => {
   const testCases = [
@@ -13,5 +15,41 @@ describe('Checks if fetchMovie function fecthes correct title', () => {
 
       expect(movie.attributes.title).toBe(expectedTitle)
     })
+  })
+})
+
+describe('GET /movie', () => {
+  it('should return HTML with correct movie title', async () => {
+    global.fetch = jest.fn()
+
+    const mockMovie = {
+      data: {
+        id: 111,
+        attributes: {
+          title: 'Testmovie',
+          intro: 'An amazing movie about testing',
+          image: { url: 'https://notrelevant.com/Testmovie.jpg' },
+          imdbId: 'faketitle',
+        },
+      },
+      meta: {},
+    }
+
+    fetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => mockMovie,
+    })
+
+    //const fetchMovieSpy = jest.spyOn({fetchMovie}, 'default')
+    //fetchMovieSpy.mockResolvedValueOnce(mockMovie)
+
+    //fetchMovie.mockResolvedValue(mockMovie)
+
+    const response = await request(app).get('/movie?movieId=111')
+
+    expect(response.status).toBe(200)
+    expect(response.text).toContain('<h1 class="title">Testmovie</h1>')
+
+    fetch.mockRestore()
   })
 })
