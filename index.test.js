@@ -40,11 +40,6 @@ describe('GET /movie', () => {
       json: async () => mockMovie,
     })
 
-    //const fetchMovieSpy = jest.spyOn({fetchMovie}, 'default')
-    //fetchMovieSpy.mockResolvedValueOnce(mockMovie)
-
-    //fetchMovie.mockResolvedValue(mockMovie)
-
     const response = await request(app).get('/movie?movieId=111')
 
     expect(response.status).toBe(200)
